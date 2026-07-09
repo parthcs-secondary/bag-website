@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { Logo } from '../ui/Logo';
 
 interface HeaderProps {
   onOpenCart: () => void;
@@ -48,9 +49,10 @@ export const Header = ({ onOpenCart }: HeaderProps) => {
         <div className="flex flex-1 justify-center md:justify-start">
           <Link 
             to="/" 
-            className="text-xl font-black tracking-tighter text-slate-900 transition-opacity hover:opacity-80"
+            className="group flex items-center gap-2 text-xl font-black tracking-tighter text-slate-900 transition-opacity hover:opacity-80"
           >
-            LOCAL<span className="font-light text-slate-500">BAG.</span>
+            <Logo className="h-7 w-7 transition-transform group-hover:scale-105" />
+            AS_Bags.
           </Link>
         </div>
 

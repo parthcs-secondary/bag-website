@@ -8,6 +8,8 @@ import { ProductGrid } from './features/products/ProductGrid';
 import { ProductDetail } from './features/products/ProductDetail';
 import { CartDrawer } from './features/cart/CartDrawer';
 import { Footer } from './components/layout/Footer';
+import { AboutPage } from './features/about/AboutPage';
+import { ContactPage } from './features/contact/ContactPage';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -45,6 +47,8 @@ function App() {
                 } 
               />
               <Route path="/products/:slug" element={<ProductDetail />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </main>
           <Footer />
