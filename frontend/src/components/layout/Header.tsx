@@ -4,11 +4,6 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { Logo } from '../ui/Logo';
 
-interface HeaderProps {
-  onOpenCart: () => void;
-}
-
-// Keep navigation declarative and DRY
 const NAVIGATION = [
   { name: 'Home', href: '/' },
   { name: 'Categories', href: '/categories' },
@@ -16,75 +11,61 @@ const NAVIGATION = [
   { name: 'Contact Us', href: '/contact' },
 ];
 
-export const Header = ({ onOpenCart }: HeaderProps) => {
+export const Header = ({ onOpenCart }: { onOpenCart: () => void }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { cartCount } = useCart();
   const location = useLocation();
 
-  // Auto-close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  // Close mobile menu whenever the route changes
+  useEffect(() => setIsMobileMenuOpen(false), [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md transition-all">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 w-full border-b border-gray-100 bg-white/90 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        {/* Left: Mobile Menu Button */}
-        <div className="flex items-center md:hidden">
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="rounded-md p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 stroke-[1.5px]" />
-            ) : (
-              <Menu className="h-6 w-6 stroke-[1.5px]" />
-            )}
-          </button>
-        </div>
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+          className="md:hidden p-2 -ml-2 text-[#1A1B1E] hover:text-[#D1B06B] transition-colors"
+          aria-label="Toggle mobile menu"
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
 
-        {/* Center/Left: Logo */}
+        {/* Brand Logo */}
         <div className="flex flex-1 justify-center md:justify-start">
-          <Link 
-            to="/" 
-            className="group flex items-center gap-2 text-xl font-black tracking-tighter text-slate-900 transition-opacity hover:opacity-80"
-          >
-            <Logo className="h-7 w-7 transition-transform group-hover:scale-105" />
-            AS_Bags.
+          <Link to="/" className="group flex items-center gap-3 text-xl font-black tracking-widest text-[#1A1B1E] hover:opacity-80">
+            <Logo className="h-10 w-12 transition-transform duration-300 group-hover:scale-105" />
+            <div className="flex flex-col text-left">
+              <span>FYBERCOMPANY</span>
+              <span className="text-[9px] font-medium tracking-[0.3em] text-[#888888]">EST. 2026</span>
+            </div>
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Nav */}
         <nav className="hidden md:flex md:gap-x-8">
-          {NAVIGATION.map((item) => {
-            const isActive = location.pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-slate-900 ${
-                  isActive ? 'text-slate-900 underline decoration-slate-900 decoration-2 underline-offset-4' : 'text-slate-500'
-                }`}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
+          {NAVIGATION.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`text-sm font-medium tracking-wide uppercase transition-colors hover:text-[#D1B06B] ${
+                location.pathname === item.href 
+                  ? 'text-[#D1B06B] underline decoration-[#D1B06B] decoration-2 underline-offset-4' 
+                  : 'text-[#1A1B1E]/70'
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
         </nav>
 
-        {/* Right: Cart Action */}
+        {/* Cart Action */}
         <div className="flex items-center justify-end md:flex-1">
-          <button
-            onClick={onOpenCart}
-            className="group relative rounded-full p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
-            aria-label="Open shopping cart"
-          >
-            <ShoppingBag className="h-5 w-5 stroke-[2px] transition-transform group-hover:scale-110" />
-            
+          <button onClick={onOpenCart} className="relative p-2 -mr-2 text-[#1A1B1E] hover:text-[#D1B06B] transition-colors">
+            <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
-              <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] font-bold text-white ring-2 ring-white">
+              <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-[#D1B06B] text-[9px] font-bold text-white ring-2 ring-white">
                 {cartCount}
               </span>
             )}
@@ -92,31 +73,27 @@ export const Header = ({ onOpenCart }: HeaderProps) => {
         </div>
       </div>
 
-      {/* Mobile Navigation Dropdown */}
-      <div 
-        className={`border-b border-slate-200 bg-white md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <nav className="flex flex-col space-y-1 px-4 pb-4 pt-2 sm:px-6">
-          {NAVIGATION.map((item) => {
-            const isActive = location.pathname === item.href;
-            return (
+      {/* --- MOBILE MENU DROPDOWN --- */}
+      {/* This was missing. It renders absolutely below the header when state is true. */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-20 left-0 w-full bg-white border-b border-gray-100 shadow-xl md:hidden">
+          <nav className="flex flex-col px-4 py-6 space-y-2">
+            {NAVIGATION.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
-                  isActive 
-                    ? 'bg-slate-100 text-slate-900' 
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                className={`block px-4 py-4 text-sm font-bold tracking-widest uppercase transition-colors rounded-sm ${
+                  location.pathname === item.href 
+                    ? 'text-[#D1B06B] bg-gray-50' 
+                    : 'text-[#1A1B1E] hover:text-[#D1B06B] hover:bg-gray-50'
                 }`}
               >
                 {item.name}
               </Link>
-            );
-          })}
-        </nav>
-      </div>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

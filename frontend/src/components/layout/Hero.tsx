@@ -2,37 +2,40 @@ import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-slate-50">
-      {/* Cinematic Background Image & Soft Light Overlay */}
+    <section className="relative w-full overflow-hidden bg-[#1A1B1E] min-h-[80vh] sm:min-h-[600px] flex items-center">
+      {/* Structural Image Layer */}
       <div className="absolute inset-0">
-        <img
-          src="https://placehold.co/1920x1080/e2e8f0/0f172a?text=Cinematic+Lifestyle+Photo" 
-          alt="Premium handcrafted leather and canvas tote bag in a natural, artisan café setting"
-          className="h-full w-full object-cover object-center"
-        />
-        {/* Soft morning light vignette */}
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] md:bg-white/10" aria-hidden="true" />
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/images/hero-desktop.jpg" type="image/jpg" />
+          <img
+            src="/images/hero-desktop.jpg"
+            alt="Handcrafted FYBERCOMPANY collection"
+            className="h-full w-full object-cover object-center opacity-80"
+            fetchPriority="high"
+            decoding="sync"
+          />
+        </picture>
+        {/* Hardware-accelerated gradient overlay for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1B1E]/95 via-[#1A1B1E]/60 to-transparent" aria-hidden="true" />
       </div>
 
-      {/* Overlaid Content Area */}
-      <div className="relative mx-auto max-w-7xl px-4 py-32 sm:px-6 md:py-48 lg:px-8">
+      {/* Content Overlay Layer */}
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-32 sm:px-6 md:py-48 lg:px-8">
         <div className="md:max-w-2xl">
-          {/* Stark Typography */}
-          <h1 className="text-4xl font-black tracking-tighter text-slate-900 sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl">
             CRAFTED FOR YOUR <br className="hidden sm:inline" />DAILY JOURNEY.
           </h1>
           
-          <p className="mt-6 max-w-xl text-lg text-slate-600">
-            Artesinal, local bags made durable. Designed to look as good as they last, perfect for modern commutes and mindful travel.
+          <p className="mt-6 max-w-xl text-lg text-gray-300">
+            Artisanal, luxury bags made durable. Designed to look as good as they last, perfect for modern commutes and mindful travel.
           </p>
 
-          {/* Premium Call to Action */}
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Link
               to="/categories"
-              className="inline-flex w-full items-center justify-center rounded-md bg-slate-900 px-8 py-4 text-base font-medium text-white transition-all hover:bg-slate-800 hover:scale-[1.03] active:scale-[0.98] sm:w-auto focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-4 text-sm font-bold tracking-widest uppercase text-[#1A1B1E] transition-all hover:bg-[#D1B06B] hover:text-white hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#D1B06B] focus:ring-offset-2 focus:ring-offset-[#1A1B1E]"
             >
-              SHOP LATEST ARRIVALS
+              Shop Latest Arrivals
             </Link>
           </div>
         </div>

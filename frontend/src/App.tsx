@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <div className="min-h-screen bg-slate-50 font-sans flex flex-col">
+        <div className="min-h-screen bg-brand-white text-brand-black font-sans flex flex-col">
           <Header onOpenCart={() => setIsCartOpen(true)} />
           
           <main className="flex-1 w-full">
