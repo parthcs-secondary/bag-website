@@ -37,7 +37,7 @@ describe('CartDrawer', () => {
 
     expect(screen.getByRole('heading', { name: inStockProduct.name })).toBeInTheDocument();
     expect(screen.getByText('Subtotal')).toBeInTheDocument();
-    expect(screen.getAllByText('$120.00').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('₹120.00').length).toBeGreaterThan(0);
     expect(screen.getByRole('button', { name: 'Checkout' })).toBeInTheDocument();
   });
 
@@ -68,6 +68,6 @@ describe('CartDrawer', () => {
     await user.click(screen.getByRole('button', { name: 'Seed cart' }));
     await user.click(screen.getByRole('button', { name: 'Increase quantity' }));
 
-    expect(screen.getByText('Subtotal').nextElementSibling).toHaveTextContent('$240.00');
+    expect(screen.getByText('Subtotal').nextElementSibling).toHaveTextContent('₹240.00');
   });
 });

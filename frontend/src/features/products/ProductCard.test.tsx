@@ -10,7 +10,7 @@ describe('ProductCard', () => {
     renderWithRouter(<ProductCard product={inStockProduct} onAddToCart={vi.fn()} />);
 
     expect(screen.getByRole('heading', { name: inStockProduct.name })).toBeInTheDocument();
-    expect(screen.getByText('$120.00')).toBeInTheDocument();
+    expect(screen.getByText('₹120.00')).toBeInTheDocument();
     expect(screen.getByText(inStockProduct.category)).toBeInTheDocument();
   });
 

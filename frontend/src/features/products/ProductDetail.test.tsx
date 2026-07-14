@@ -43,7 +43,7 @@ describe('ProductDetail', () => {
     renderProductDetail('nomad-canvas');
 
     expect(screen.getByRole('heading', { name: 'Nomad Canvas' })).toBeInTheDocument();
-    expect(screen.getByText('$120.00')).toBeInTheDocument();
+    expect(screen.getByText('₹120.00')).toBeInTheDocument();
     expect(screen.getByText('Durable daily carry.')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /add to bag/i })).toBeEnabled();
   });

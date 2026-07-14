@@ -82,7 +82,7 @@ export const ProductDetail = () => {
               {product.name}
             </h1>
             <p className="mt-6 text-2xl font-medium tracking-tight text-[#1A1B1E]">
-              ${product.price.toFixed(2)}
+              ₹{product.price.toFixed(2)}
             </p>
           </motion.div>
 

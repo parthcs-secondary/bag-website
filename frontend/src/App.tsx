@@ -13,6 +13,7 @@ import { CartDrawer } from './features/cart/CartDrawer';
 import { Footer } from './components/layout/Footer';
 import { AboutPage } from './features/about/AboutPage';
 import { ContactPage } from './features/contact/ContactPage';
+import { CheckoutPage } from './features/checkout/CheckoutPage';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -56,6 +57,7 @@ function App() {
               <Route path="/products/:slug" element={<ProductDetail />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
             </Routes>
           </main>
           <Footer />

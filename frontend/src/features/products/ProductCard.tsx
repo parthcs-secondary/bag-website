@@ -49,7 +49,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         {/* Pricing & CTA */}
         <div className="mt-auto pt-4 flex items-center justify-between">
           <p className="text-sm font-bold text-[#1A1B1E]">
-            ${price.toFixed(2)}
+            ₹{price.toFixed(2)}
           </p>
           
           <button
