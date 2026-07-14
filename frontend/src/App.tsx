@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { CartProvider } from './context/CartContext';
 import { Header } from './components/layout/Header';
 import { Hero } from './components/layout/Hero';
 import { CategoryGrid } from './components/layout/CategoryGrid'; // Imported
 import { ProductGrid } from './features/products/ProductGrid';
+import { ProductsPage } from './features/products/ProductsPage';
 import { ProductDetail } from './features/products/ProductDetail';
 import { ProductListingPage } from './features/products/ProductListingPage';
 import { PromoBanner } from './components/layout/PromoBanner';
