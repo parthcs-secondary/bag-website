@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-
-export const Hero = () => {
+import { motion } from 'framer-motion';export const Hero = () => {
   return (
     <section className="relative w-full overflow-hidden bg-[#1A1B1E] min-h-[80vh] sm:min-h-[600px] flex items-center">
       {/* Structural Image Layer */}
@@ -21,24 +20,44 @@ export const Hero = () => {
 
       {/* Content Overlay Layer */}
       <div className="relative mx-auto w-full max-w-7xl px-4 py-32 sm:px-6 md:py-48 lg:px-8">
-        <div className="md:max-w-2xl">
-          <h1 className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl">
+        <motion.div 
+          className="md:max-w-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h1 
+            className="text-4xl font-black tracking-tighter text-white sm:text-5xl lg:text-6xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
             CRAFTED FOR YOUR <br className="hidden sm:inline" />DAILY JOURNEY.
-          </h1>
+          </motion.h1>
           
-          <p className="mt-6 max-w-xl text-lg text-gray-300">
+          <motion.p 
+            className="mt-6 max-w-xl text-lg text-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
             Artisanal, luxury bags made durable. Designed to look as good as they last, perfect for modern commutes and mindful travel.
-          </p>
+          </motion.p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <motion.div 
+            className="mt-10 flex flex-col sm:flex-row gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
             <Link
               to="/categories"
               className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-4 text-sm font-bold tracking-widest uppercase text-[#1A1B1E] transition-all hover:bg-[#D1B06B] hover:text-white hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#D1B06B] focus:ring-offset-2 focus:ring-offset-[#1A1B1E]"
             >
               Shop Latest Arrivals
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

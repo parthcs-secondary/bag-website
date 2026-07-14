@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SITE_CATEGORIES } from '../../data';
 import { Logo } from '../ui/Logo';
 
 export const Footer = () => {
@@ -48,12 +49,13 @@ export const Footer = () => {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-white">Shop</h3>
             <ul role="list" className="mt-6 space-y-4 text-sm">
-              <li><Link to="/categories/duffel" className="transition-colors hover:text-[#D1B06B]">Duffels</Link></li>
-              <li><Link to="/categories/tote" className="transition-colors hover:text-[#D1B06B]">Totes</Link></li>
-              <li><Link to="/categories/barrel" className="transition-colors hover:text-[#D1B06B]">Barrel</Link></li>
-              <li><Link to="/categories/tiffin" className="transition-colors hover:text-[#D1B06B]">Tiffin</Link></li>
-              <li><Link to="/categories/pouch" className="transition-colors hover:text-[#D1B06B]">Pouch</Link></li>
-              <li><Link to="/categories/clutch" className="transition-colors hover:text-[#D1B06B]">Clutch</Link></li>
+              {SITE_CATEGORIES.map((category) => (
+                <li key={category.id}>
+                  <Link to={category.href} className="transition-colors hover:text-[#D1B06B]">
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -5,9 +5,12 @@ export interface Product {
   description: string;
   price: number;
   images: string[];
-  category: 'backpack' | 'tote' | 'duffel' | 'clutch';
-  material: 'leather' | 'canvas' | 'nylon';
+  category: string;
+  material: string;
   inStock: boolean;
+  features?: string[];
+  dimensions?: string;
+  weight?: string;
 }
 
 export interface CartItem extends Product {

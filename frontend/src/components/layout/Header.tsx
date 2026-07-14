@@ -3,10 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { Logo } from '../ui/Logo';
+import { SITE_CATEGORIES } from '../../data';
 
 const NAVIGATION = [
   { name: 'Home', href: '/' },
-  { name: 'Categories', href: '/categories' },
+  { name: 'Collection', href: '/products' },
   { name: 'About', href: '/about' },
   { name: 'Contact Us', href: '/contact' },
 ];
@@ -44,20 +45,54 @@ export const Header = ({ onOpenCart }: { onOpenCart: () => void }) => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex md:gap-x-8">
-          {NAVIGATION.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              className={`text-sm font-medium tracking-wide uppercase transition-colors hover:text-[#D1B06B] ${
-                location.pathname === item.href 
-                  ? 'text-[#D1B06B] underline decoration-[#D1B06B] decoration-2 underline-offset-4' 
-                  : 'text-[#1A1B1E]/70'
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <nav className="hidden md:flex md:gap-x-8 items-center">
+          {NAVIGATION.map((item) => {
+            const isActive = location.pathname === item.href;
+            
+            if (item.name === 'Collection') {
+              return (
+                <div key={item.name} className="group relative py-8">
+                  <Link
+                    to={item.href}
+                    className={`text-sm font-medium tracking-wide uppercase transition-colors hover:text-[#D1B06B] ${
+                      isActive 
+                        ? 'text-[#D1B06B] underline decoration-[#D1B06B] decoration-2 underline-offset-4' 
+                        : 'text-[#1A1B1E]/70'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full hidden w-56 group-hover:block">
+                    <div className="flex flex-col rounded-sm bg-white p-4 shadow-xl border border-gray-100 gap-y-1">
+                      {SITE_CATEGORIES.map((category) => (
+                        <Link 
+                          key={category.id} 
+                          to={category.href} 
+                          className="px-4 py-3 text-xs font-bold uppercase tracking-widest text-[#1A1B1E] transition-colors hover:bg-gray-50 hover:text-[#D1B06B]"
+                        >
+                          {category.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`text-sm font-medium tracking-wide uppercase transition-colors hover:text-[#D1B06B] ${
+                  isActive 
+                    ? 'text-[#D1B06B] underline decoration-[#D1B06B] decoration-2 underline-offset-4' 
+                    : 'text-[#1A1B1E]/70'
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Cart Action */}

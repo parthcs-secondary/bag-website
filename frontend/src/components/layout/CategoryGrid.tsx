@@ -153,153 +153,8 @@
 
 
 import { Link } from 'react-router-dom';
-
-const CATEGORIES = [
-
-      {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'Clutch',
-    name: 'Clutch Bags',
-    description: 'Ergonomic layouts for the modern nomad',
-    href: '/categories/clutch',
-    image: '/images/white-bag.png',
-    gridClass: 'md:col-span-1',
-  },
-  {
-    id: 'duffels',
-    name: 'Weekender Duffels',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/duffel',
-    image: '/images/orange-bag.png',
-    gridClass: 'md:col-span-2 lg:col-span-1',
-  },
-  {
-    id: 'Barrel',
-    name: 'Barrel Bags',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/barrel',
-    image: '/images/white-bag.png',
-    gridClass: 'md:col-span-2 lg:col-span-1',
-  },
-  {
-    id: 'Tiffin',
-    name: 'Tiffin Bags',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/tiffin',
-    image: '/images/white-bag.png',
-    gridClass: 'md:col-span-2 lg:col-span-1',
-  },
-  {
-    id: 'Pouch',
-    name: 'Pouch Bags',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/pouch',
-    image: '/images/white-bag.png',
-    gridClass: 'md:col-span-2 lg:col-span-1',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: 'https://placehold.co/800x1000/f1f5f9/1A1B1E?text=Daily+Totes',
-  },
-  {
-    id: 'backpacks',
-    name: 'Commuter Backpacks',
-    description: 'Ergonomic layouts for the modern nomad',
-    href: '/categories/backpack',
-    image: 'https://placehold.co/800x1000/e2e8f0/1A1B1E?text=Commuter+Backpacks',
-  },
-  {
-    id: 'duffels',
-    name: 'Weekender Duffels',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/duffel',
-    image: 'https://placehold.co/1200x800/cbd5e1/1A1B1E?text=Weekender+Duffels',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: 'https://placehold.co/800x1000/f1f5f9/1A1B1E?text=Daily+Totes',
-  },
-  {
-    id: 'backpacks',
-    name: 'Commuter Backpacks',
-    description: 'Ergonomic layouts for the modern nomad',
-    href: '/categories/backpack',
-    image: 'https://placehold.co/800x1000/e2e8f0/1A1B1E?text=Commuter+Backpacks',
-  },
-  {
-    id: 'duffels',
-    name: 'Weekender Duffels',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/duffel',
-    image: 'https://placehold.co/1200x800/cbd5e1/1A1B1E?text=Weekender+Duffels',
-  },
-  {
-    id: 'totes',
-    name: 'Daily Totes',
-    description: 'Premium office and market carries',
-    href: '/categories/tote',
-    image: 'https://placehold.co/800x1000/f1f5f9/1A1B1E?text=Daily+Totes',
-  },
-  {
-    id: 'backpacks',
-    name: 'Commuter Backpacks',
-    description: 'Ergonomic layouts for the modern nomad',
-    href: '/categories/backpack',
-    image: 'https://placehold.co/800x1000/e2e8f0/1A1B1E?text=Commuter+Backpacks',
-  },
-  {
-    id: 'duffels',
-    name: 'Weekender Duffels',
-    description: 'High-capacity builds for seamless travel',
-    href: '/categories/duffel',
-    image: 'https://placehold.co/1200x800/cbd5e1/1A1B1E?text=Weekender+Duffels',
-  },
-];
+import { motion } from 'framer-motion';
+import { SITE_CATEGORIES } from '../../data';
 
 export const CategoryGrid = () => {
   return (
@@ -307,20 +162,42 @@ export const CategoryGrid = () => {
       <div className="mx-auto max-w-7xl py-12 sm:py-16">
         
         {/* Section Header */}
-        <div className="mb-8 px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+        <motion.div 
+          className="mb-8 px-4 sm:px-6 lg:px-8 text-center sm:text-left"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 id="category-heading" className="text-xl font-black tracking-tight text-[#1A1B1E] uppercase sm:text-2xl">
             Shop by Collection
           </h2>
           <p className="mt-2 text-xs text-[#888888] uppercase tracking-widest">
             Carefully curated pieces engineered for utility.
           </p>
-        </div>
+        </motion.div>
 
         {/* Horizontal Scrollable Section */}
-        <div className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory px-4 sm:px-6 lg:px-8 pb-8 pt-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {CATEGORIES.map((category) => (
-            <div
-              key={category.id}
+        <motion.div 
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory px-4 sm:px-6 lg:px-8 pb-8 pt-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+        >
+          {SITE_CATEGORIES.map((category, index) => (
+            <motion.div
+              key={`${category.href}-${index}`}
+              variants={{
+                hidden: { opacity: 0, x: 50 },
+                show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+              }}
               // Reduced sizes: narrower width and shorter height for a more compact look
               className="group relative flex-none w-[70vw] sm:w-[260px] md:w-[300px] h-[340px] md:h-[400px] overflow-hidden rounded-sm bg-gray-100 snap-start"
             >
@@ -354,9 +231,9 @@ export const CategoryGrid = () => {
                   Explore Collection &rarr;
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -11,9 +11,9 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const { name, slug, price, images, category, inStock } = product;
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-4 transition-all duration-300 hover:shadow-lg hover:border-slate-300">
+    <article className="group relative flex flex-col overflow-hidden rounded-sm border border-gray-100 bg-white p-3 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-[#D1B06B]/30">
       {/* Image Wrapper */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-md bg-slate-50">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-gray-50">
         <img
           src={images[0]}
           alt={name}
@@ -23,8 +23,8 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         
         {/* Out of Stock Overlay */}
         {!inStock && (
-          <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px]">
-            <span className="rounded-sm bg-white px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-900 shadow-sm">
+          <div className="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-sm">
+            <span className="rounded-sm bg-[#1A1B1E] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow-sm">
               Sold Out
             </span>
           </div>
@@ -33,11 +33,11 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
       {/* Product Info */}
       <div className="mt-5 flex flex-1 flex-col">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
+        <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#888888]">
           {category}
         </p>
         
-        <h3 className="mt-1 text-sm font-semibold text-slate-900">
+        <h3 className="mt-1.5 text-xs font-bold uppercase tracking-widest text-[#1A1B1E]">
           {/* Using a standard anchor tag for now. 
             If you add react-router-dom later, swap this for <Link to={`/products/${slug}`}> 
           */}
@@ -48,7 +48,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
         {/* Pricing & CTA */}
         <div className="mt-auto pt-4 flex items-center justify-between">
-          <p className="text-lg font-bold text-slate-900">
+          <p className="text-sm font-bold text-[#1A1B1E]">
             ${price.toFixed(2)}
           </p>
           
@@ -58,7 +58,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
               onAddToCart(product);
             }}
             disabled={!inStock}
-            className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white transition-all hover:bg-slate-700 hover:scale-105 active:scale-95 disabled:pointer-events-none disabled:bg-slate-200 disabled:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+            className="relative z-10 flex h-8 w-8 items-center justify-center rounded-none bg-[#1A1B1E] text-white transition-all hover:bg-[#D1B06B] disabled:pointer-events-none disabled:bg-gray-200 disabled:text-gray-400"
             aria-label={`Add ${name} to cart`}
           >
             <ShoppingBag className="h-4 w-4 stroke-[2.5px]" />

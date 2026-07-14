@@ -1,7 +1,7 @@
 import { useProducts } from '../../hooks/UseProducts';
 import { ProductCard } from './ProductCard'
 import { useCart } from '../../context/CartContext';
-
+import { motion } from 'framer-motion';
 export const ProductGrid = () => {
   const { products, isLoading } = useProducts();
   const { addToCart } = useCart();
@@ -19,13 +19,31 @@ export const ProductGrid = () => {
       {/* sr-only ensures accessibility without breaking visual design */}
       <h2 id="catalog-heading" className="sr-only">Product Catalog</h2>
       
-      <ul className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+      <motion.ul 
+        className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:gap-x-6"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15 }
+          }
+        }}
+      >
         {products.map((product) => (
-          <li key={product.id}>
+          <motion.li 
+            key={product.id}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+            }}
+          >
             <ProductCard product={product} onAddToCart={addToCart} />
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </section>
   );
 };
