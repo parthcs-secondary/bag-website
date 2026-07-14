@@ -3,10 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useProducts } from '../../hooks/UseProducts';
 import { ProductCard } from './ProductCard';
+import { useCart } from '../../context/CartContext';
 import { SITE_CATEGORIES } from '../../data';
 
 export const ProductListingPage = () => {
   const { products, isLoading } = useProducts();
+  const { addToCart } = useCart();
   const [searchParams] = useSearchParams();
   const categoryParam = searchParams.get('category');
   
@@ -93,7 +95,7 @@ export const ProductListingPage = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
@@ -191,7 +193,7 @@ export const ProductListingPage = () => {
             >
               {filteredAndSortedProducts.map(product => (
                 <motion.div key={product.id} variants={itemVariants}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} onAddToCart={addToCart} />
                 </motion.div>
               ))}
             </motion.div>

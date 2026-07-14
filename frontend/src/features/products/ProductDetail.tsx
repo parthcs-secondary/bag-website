@@ -40,7 +40,7 @@ export const ProductDetail = () => {
   
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
@@ -58,7 +58,7 @@ export const ProductDetail = () => {
           className="relative aspect-[4/5] overflow-hidden bg-gray-50"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8 }}
         >
           <img
             src={product.images[0]}
